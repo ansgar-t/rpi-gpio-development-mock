@@ -23,7 +23,7 @@ HARD_PWM = 43
 
 PWM = None
 
-RPI_INFO = {
+RPI_INFO_REALISTIC = {
     'MANUFACTURER': 'Embest',
     'P1_REVISION': 3,
     'PROCESSOR': 'BCM2836',
@@ -32,7 +32,20 @@ RPI_INFO = {
     'TYPE': 'Pi2 Model B',
     'TESTING_INFO': 'This is only a Mock.'
 }
+
+RPI_INFO_MOCK = {
+    'MANUFACTURER': 'Mock',
+    'P1_REVISION': 0,
+    'PROCESSOR': 'FAKE1234',
+    'RAM': '1024M',
+    'REVISION': 'z99999',
+    'TYPE': 'Model Mock',
+    'TESTING_INFO': 'This is only a Mock.'
+}
+
+RPI_INFO = RPI_INFO_MOCK
 RPI_VERSION = 3
+IS_MOCK = 1
 VERSION = pkg_resources.require("RPi.GPIO")[0].version
 
 
