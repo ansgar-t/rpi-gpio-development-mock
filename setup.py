@@ -1,4 +1,5 @@
 """
+Copyright (c) 2016 Will Buckner
 Copyright (c) 2012-2016 Ben Croston
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of
@@ -33,14 +34,13 @@ classifiers = ['Development Status :: 5 - Production/Stable',
                'Topic :: System :: Hardware']
 
 setup(name             = 'RPi.GPIO',
-      version          = '0.6.1',
-      author           = 'Ben Croston',
-      author_email     = 'ben@croston.org',
-      description      = 'A module to control Raspberry Pi GPIO channels',
+      version          = '1.0.0',
+      author           = 'Will Buckner (Originally by Ben Croston)',
+      author_email     = 'willbuckner@gmail.com',
+      description      = 'A module to provide a mock RPi.GPIO module for development on Mac/Windows',
       long_description = open('README.txt').read() + open('CHANGELOG.txt').read(),
       license          = 'MIT',
-      keywords         = 'Raspberry Pi GPIO',
-      url              = 'http://sourceforge.net/projects/raspberry-gpio-python/',
+      keywords         = 'Raspberry Pi GPIO Mock',
+      url              = 'https://github.com/willbuckner/rpi-gpio-development-mock',
       classifiers      = classifiers,
-      packages         = ['RPi'],
-      ext_modules      = [Extension('RPi.GPIO', ['source/py_gpio.c', 'source/c_gpio.c', 'source/cpuinfo.c', 'source/event_gpio.c', 'source/soft_pwm.c', 'source/py_pwm.c', 'source/common.c', 'source/constants.c'])])
+      packages         = ['RPi'])

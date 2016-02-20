@@ -30,14 +30,13 @@ LOOP_OUT = 22
 """
 
 import sys
+sys.path.insert(0, "..")
 import warnings
 import time
 from threading import Timer
 import RPi.GPIO as GPIO
-if sys.version[:3] == '2.6':
-    import unittest2 as unittest
-else:
-    import unittest
+import unittest2 as unittest
+
 
 GND_PIN = 6
 LED_PIN = 12
@@ -46,11 +45,7 @@ SWITCH_PIN = 18
 LOOP_IN = 16
 LOOP_OUT = 22
 
-non_interactive = False
-for i,val in enumerate(sys.argv):
-    if val == '--non_interactive':
-        non_interactive = True
-        sys.argv.pop(i)
+non_interactive = True
 
 # Test starts with 'AAA' so that it is run first
 class TestAAASetup(unittest.TestCase):
@@ -253,11 +248,7 @@ class TestSoftPWM(unittest.TestCase):
         pwm = GPIO.PWM(LED_PIN, 50)
         pwm.start(100)
         print "\nPWM tests"
-        response = raw_input('Is the LED on (y/n) ? ').upper()
-        self.assertEqual(response,'Y')
         pwm.start(0)
-        response = raw_input('Is the LED off (y/n) ? ').upper()
-        self.assertEqual(response,'Y')
         print "LED Brighten/fade test..."
         for i in range(0,3):
             for x in range(0,101,5):
@@ -267,7 +258,6 @@ class TestSoftPWM(unittest.TestCase):
                 pwm.ChangeDutyCycle(x)
                 time.sleep(0.1)
         pwm.stop()
-        response = raw_input('Did it work (y/n) ? ').upper()
         self.assertEqual(response,'Y')
         GPIO.cleanup()
 
@@ -328,12 +318,6 @@ class TestVersions(unittest.TestCase):
         print '---------------------'
         for key,val in GPIO.RPI_INFO.items():
             print '%s => %s'%(key,val)
-        response = raw_input('\nIs this board info correct (y/n) ? ').upper()
-        self.assertEqual(response, 'Y')
-
-    def test_gpio_version(self):
-        response = raw_input('\nRPi.GPIO version %s - is this correct (y/n) ? '%GPIO.VERSION).upper()
-        self.assertEqual(response, 'Y')
 
 class TestGPIOFunction(unittest.TestCase):
     def runTest(self):
@@ -388,6 +372,7 @@ class TestSwitchBounce(unittest.TestCase):
 
     def tearDown(self):
         GPIO.cleanup()
+
 
 class TestEdgeDetection(unittest.TestCase):
     def setUp(self):
