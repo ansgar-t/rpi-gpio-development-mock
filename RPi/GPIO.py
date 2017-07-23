@@ -21,8 +21,6 @@ SPI = 41
 I2C = 42
 HARD_PWM = 43
 
-PWM = None
-
 RPI_INFO_REALISTIC = {
     'MANUFACTURER': 'Embest',
     'P1_REVISION': 3,
@@ -107,3 +105,23 @@ def gpio_function(*args, **kwargs):
 
 def add_event_callback(*args, **kwargs):
     pass
+
+def PWM(*args, **kwargs):
+
+    class PWMObject(object):
+        def __init__(self, *args, **kwargs):
+            pass
+
+        def start(self, *args, **kwargs):
+            pass
+
+        def stop(self, *args, **kwargs):
+            pass
+
+        def ChangeDutyCycle(self, *args, **kwargs):
+            pass
+
+        def ChangeFrequency(self, *args, **kwargs):
+            pass
+
+    return PWMObject()
